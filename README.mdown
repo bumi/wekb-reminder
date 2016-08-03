@@ -1,17 +1,45 @@
-WEKB reminder
-==================
+Your friendly WochenEinklangsBier reminder bot
+================
 
+The WEKB reminder will send a weekly reminder tweet and it will send direct messages to people who tell it to do so.
+Currently it is deployed for [@wekb_](https://twitter.com/wekb_)
 
-
-How to run:
+Idea
 ============
+
+The app sends a weekly tweet to remind us about the WEKB. People can reply to that tweet to RSVP. Follow [@wekb_](https://twitter.com/wekb_)
+
+The app also sends reminders as direct messages. To subscribe to these one needs to send a DM to the app [@wekb_](https://twitter.com/wekb_) 
+
+
+Deployment
+============
+
+The app is deployed on heroku and needs two cron jobs: one to look at the DM from people who want to subscribe to the DM reminder and one to send the weekly reminder. 
+
+The following environment variables must be set: 
+
+
+* DATABASE_URL
+* TWITTER_CONSUMER_KEY
+* TWITTER_CONSUMER_SECRET
+* TWITTER_ACCESS_TOKEN
+* TWITTER_ACCESS_TOKEN_SECRET
+
+
+How to run the app:
+--------------
 
     bundle install
     ruby wekb_reminder.rb register # imports direct messages and registers the people who want DMs
     ruby wekb_reminder.rb remind # sends direct messages and sends a general tweet
 
-    ruby app.rb # sinatra app to expose remind / register as  HTTP endpoint - needed for the cron jobs which are done via temporize
+    ruby app.rb # sinatra app to expose remind / register as  HTTP endpoint - needed for the cron jobs which are done via the heroku add-on temporize
 
 
+Danger, Danger
+==================
+
+It might work or it might not work. :D Pull Requests are welcome.
 
 
