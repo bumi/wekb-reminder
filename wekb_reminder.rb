@@ -48,9 +48,9 @@ class WekbReminder
   # send a public reminder tweet and direct messages to the subscribers
   def self.remind!
     return unless Time.now.tuesday? #make sure it is tuesday :D
-    TWITTER.update('\o/ it is Tuesday again. Time for #WEKB ...see you later!')
+    tweet = TWITTER.update('It is Tuesday again. Time for #WEKB \o/ who will be there?')
     DB[:wekbers].each do |w|
-      text = "Hello #{w[:twitter_username]}, this is your friendly #WEKB reminder. It is Einklangs-time! Same time, same place...see you later. \o/"
+      text = "Hello #{w[:twitter_username]}, this is your friendly #WEKB reminder. It is Einklangs-time! Same time, same place...see you later. \o/ \n\n #{tweet.url} (RSVP by replying to that tweet)"
       TWITTER.create_direct_message(w[:twitter_username], text) rescue "we simply ignore errors :)"
     end
   end
