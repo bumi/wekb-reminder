@@ -1,15 +1,18 @@
 Your friendly WochenEinklangsBier reminder bot
 ================
 
-The WEKB reminder will send a weekly reminder tweet and it will send direct messages to people who tell it to do so.
-Currently it is deployed for [@wekb_](https://twitter.com/wekb_)
+The WEKB reminder will send a weekly reminder tweet and it will send reminders as direct messages to people who tell it to do so.
 
 Idea
 ============
 
-The app sends a weekly tweet to remind us about the WEKB. People can reply to that tweet to RSVP. Follow [@wekb_](https://twitter.com/wekb_)
+__Follow: [@wekb_](https://twitter.com/wekb_)__
 
-The app also sends reminders as direct messages. To subscribe to these one needs to send a DM to the app [@wekb_](https://twitter.com/wekb_) 
+The app sends a weekly tweet to remind us about the WEKB.  
+People can reply to that tweet to RSVP which then can be seen by everybody.
+
+The app also sends reminders as direct messages.  
+To subscribe to these one needs to send a DM to the app [@wekb_](https://twitter.com/wekb_) 
 
 
 Deployment
@@ -40,6 +43,6 @@ How to run the app:
 Danger, Danger
 ==================
 
-It might work or it might not work. :D Pull Requests are welcome.
+It might work or it might not work :D Pull Requests are welcome.
 
 
