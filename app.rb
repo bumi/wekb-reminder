@@ -1,25 +1,13 @@
 require 'sinatra'
-require 'faraday'
+require './wekb_reminder'
 
-$faraday = Faraday.new(:url => 'https://api.justyo.co/') do |faraday|
-  faraday.request  :url_encoded             # form-encode POST params
-  faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+# exposes a register and remind endpoint for temporize which we use for cron jobs on heroku
+# on a qick look it was the easiest to use "secret" URL to secure the endpoints. To do this a SECRET_URL env variable must be set
+
+post "#{ENV['SECRET_URL']}/register" do
+  WekbReminder.register!
 end
 
-$locations = {}
-ENV.each do |key, value|
-  next unless key.start_with?("YO_API_TOKEN_")
-  $locations[key.gsub("YO_API_TOKEN_", "").downcase] = value
-end
-
-puts $locations.inspect
-
-get '/:location' do
-  if api_token = $locations[params[:location].downcase]
-    puts params.inspect
-    $faraday.post('/yoall', {api_token: api_token})
-    "thanks, buddy"
-  else
-    raise Sinatra::NotFound, params[:location]
-  end
+post "#{ENV['SECRET_URL']}/remind" do
+  WekbReminder.remind!
 end

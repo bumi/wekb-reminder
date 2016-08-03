@@ -1,41 +1,17 @@
-Yo! @all
-===============
-
-a little app that receives Yo!s and broadcasts it to all subscribers. 
-
-Usage
-----------
-
-1. create a new heroku app and push this application there
-2. create a new YO! account and set the callback url to http://<your heroku url>/<whatever> 
-3. configure the Yo! API tokens using heroku config variables (see "Configure API tokens")
-4. subscribe to the accounts and Yo!
-
-Configure API TOKENS
--------------
-
-Add the YO! API token as a heroku env config varible with the following schema:
-`YO_API_TOKEN_<your name>`
-
-The app now listens to `/<your name>` and sends a `yoall` to the using the configured API token.
-
-You can set the Heroku config varibales from the command line or from you heroku admin dashboad in the app settings section.
-
-ToDo:
-----------------
-
-* Support for links
+WEKB reminder
+==================
 
 
-Links
---------------
 
-* http://justyo.co
-* http://dev.justyo.co/
+How to run:
+============
 
-Contact
----------------
+    bundle install
+    ruby wekb_reminder.rb register # imports direct messages and registers the people who want DMs
+    ruby wekb_reminder.rb remind # sends direct messages and sends a general tweet
 
-* Michael Bumann
-* [@bumi](http://twitter.com/bumi)
-* hello@michaelbumann.com
+    ruby app.rb # sinatra app to expose remind / register as  HTTP endpoint - needed for the cron jobs which are done via temporize
+
+
+
+
