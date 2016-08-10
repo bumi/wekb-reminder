@@ -1,5 +1,6 @@
 require 'sequel'
 require 'twitter'
+require 'mechanize'
 
 DB = Sequel.connect(ENV['DATABASE_URL'])
 DB.create_table?(:wekbers) do
@@ -22,6 +23,20 @@ end
 
 
 class WekbReminder
+
+  def self.fact!
+    return unless Time.now.monday? #only mondays
+    agent = Mechanize.new
+    agent.user_agent_alias = 'Mac Safari' # Wikipedia blocks "mechanize"
+    page = agent.get("https://en.wikipedia.org/wiki/#{Time.now.strftime('%B_%e')}")
+    events = page.root.css('#Events').first.parent.next_element.css('li') rescue nil
+    if events
+      history = events.to_a.last(20).shuffle.first.text
+      text = "Tomorrow is #WEKB!\nBut this day in #{history}"
+      TWITTER.update(text)
+      return text
+    end
+  end
 
   # check for direct messages and register people who want a DM reminder
   # send a DM with the content "stop" to unsubscribe
@@ -63,4 +78,6 @@ if ARGV[0] == 'remind'
 elsif ARGV[0] == 'register'
   WekbReminder.register!
   puts "registered"
+elsif ARGV[0] == 'fact'
+  puts WekbReminder.fact!
 end

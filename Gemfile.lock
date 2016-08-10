@@ -20,10 +20,26 @@ GEM
     http-form_data (1.0.1)
     http_parser.rb (0.6.0)
     json (1.8.3)
+    mechanize (2.7.4)
+      domain_name (~> 0.5, >= 0.5.1)
+      http-cookie (~> 1.0)
+      mime-types (>= 1.17.2, < 3)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (~> 2.5, >= 2.5.2)
+      nokogiri (~> 1.6)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (>= 0.0.9, < 0.2)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
+    mime-types (2.99)
+    mini_portile2 (2.0.0)
     multipart-post (2.0.0)
     naught (1.1.0)
+    net-http-digest_auth (1.4)
+    net-http-persistent (2.9.4)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
+    ntlm-http (0.1.1)
     pg (0.18.4)
     rack (1.5.2)
     rack-protection (1.5.3)
@@ -54,11 +70,13 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+    webrobots (0.1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  mechanize
   pg
   sequel
   sinatra
