@@ -6,8 +6,10 @@ require './wekb_reminder'
 
 post "/#{ENV['SECRET_URL']}/register" do
   WekbReminder.register!
+  "registered"
 end
 
 post "/#{ENV['SECRET_URL']}/remind" do
   WekbReminder.remind!
+  "reminded"
 end
