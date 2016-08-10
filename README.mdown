@@ -36,6 +36,7 @@ How to run the app:
     bundle install
     ruby wekb_reminder.rb register # imports direct messages and registers the people who want DMs
     ruby wekb_reminder.rb remind # sends direct messages and sends a general tweet
+    ruby wekb_reminder.rb fact # sends a monday reminder with a historic fact
 
     ruby app.rb # sinatra app to expose remind / register as  HTTP endpoint - needed for the cron jobs which are done via the heroku add-on temporize
 
