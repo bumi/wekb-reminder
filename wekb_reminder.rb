@@ -32,7 +32,7 @@ class WekbReminder
     events = page.root.css('#Events').first.parent.next_element.css('li') rescue nil
     if events
       history = events.to_a.last(20).shuffle.first.text
-      text = "Tomorrow is #WEKB!\nBut this day in #{history}"
+      text = "tomorrow is #WEKB but in #{history}"
       TWITTER.update(text)
       return text
     end
