@@ -31,8 +31,12 @@ class WekbReminder
     page = agent.get("https://en.wikipedia.org/wiki/#{Time.now.strftime('%B_%e')}")
     events = page.root.css('#Events').first.parent.next_element.css('li') rescue nil
     if events
-      history = events.to_a.last(20).shuffle.first.text
-      text = "tomorrow is #WEKB but in #{history}"
+      history = events.to_a.map(&:text).reject {|h| h.length > 105}.last(20).shuffle.first # get one from the latest 20 that fit in a tweet
+      if history
+        text = "Tomorrow is #WEKB but this day in #{history}"
+      else
+        text = "Tomorrow is #WEKB \o/"
+      end
       TWITTER.update(text)
       return text
     end
