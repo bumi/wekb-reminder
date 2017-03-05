@@ -59,6 +59,8 @@ class WekbReminder
         DB[:wekbers].insert(:name => name, :twitter_username => twitter_username)
         TWITTER.follow(twitter_username)
         TWITTER.create_direct_message(twitter_username, "Hi #{twitter_username}, great! See you on Tuesday. I will send you a WEKB reminder.")
+      else
+        TWITTER.create_direct_message(twitter_username, "I am sorry #{name}, I am afraid I can not understand you.")
       end
       DB[:tweets].insert(:tweet_id => t.id.to_s, :created_at => Time.now)
     end
